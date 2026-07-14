@@ -7,6 +7,8 @@ The platform was required to transform highly complex electoral data into clear,
 
 The team was responsible for the end-to-end design and development of the platform, including UX/UI design, interactive data visualization, map integration, seat calculations, and overall system optimization. As the **Data Engineer** on this project, I worked closely with the Tech Lead to design the core data architecture and was solely responsible for developing the automated data ingestion and transformation pipelines (ETL) required to sustain massive public traffic under a strict zero-error mandate.
 
+* 🔗 **Live Platform:** [PRD Election Reporting Website](https://election69.prd.go.th/overall/)
+
 ---
 
 ## 2) Challenges
