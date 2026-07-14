@@ -27,7 +27,7 @@ As my primary area of responsibility, the data pipeline and infrastructure were 
 *   **Automated Real-Time Synchronization & Caching:** I deployed stateless orchestration workers running continuous, automated time-triggered loops. To optimize cloud infrastructure bills and edge network overhead, I developed delta-check logic ensuring that **files were only overwritten to object storage when a cryptographic data hash change was detected**. Custom edge caching rules were enforced via CDN layers, tuning cache lifecycles according to volatility (e.g., 15-second cycles for operational control data and 30-second cycles for live voting statistics).
 
 ### 3.2) Optimized Storage Architecture & File Layout
-To enable sub-second client data delivery and decoupled CDN invalidation paths, I structured the Object Storage layout into strict, predictable namespaces. This allowed our edge workers to route traffic efficiently without scanning the entire storage hierarchy:
+To enable sub-second client data delivery, predictable edge routing, and a reliable historical audit trail, I structured the Object Storage layout into strict, predictable namespaces. This allowed our edge workers to route traffic efficiently without scanning the entire storage hierarchy:
 
 ```text
 my-bucket/
@@ -49,6 +49,9 @@ my-bucket/
         └── {timestamp_v3}/
             └── ...
 ```
+
+*   **High-Frequency Static Overwrites:** Core operational payloads like latest.json and warroom.json were persistently overwritten at the same deterministic URI. This minimized CDN cache invalidation overhead and guaranteed that the client-side application always pulled the freshest real-time updates without polling dynamic endpoints.
+*   **Atomic Historical Versioning:** Every data synchronization cycle generated a fully self-contained directory under versions/{timestamp}/. Instead of mutating files in place, the pipeline baked the granular boundary metadata (country, region, province, zone) directly into that specific timestamped block. This eliminated race conditions, allowed the frontend to safely reference immutable state snapshots, and provided a flawless mathematical audit log for post-election analytics.
 
 ### 3.3) Conceptual Data Flow Workflow
 Below is the high-level conceptual data flow architecture engineered to bypass computational bottlenecks and deliver optimized static payloads to the edge:
