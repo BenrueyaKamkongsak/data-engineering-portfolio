@@ -40,8 +40,8 @@ graph LR
         C{Automated ETL Pipeline}
     end
 
-    subgraph Storage Buffer
-        D[(Cloud Storage)]
+    subgraph Storage
+        D[(Cloud Storage Bucket)]
     end
 
     subgraph Edge Distribution
