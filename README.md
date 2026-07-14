@@ -16,7 +16,7 @@ To demonstrate my technical capabilities, this repository serves as an **Archite
 | :--- | :--- | :--- | :--- |
 | 🗳️ **National Election Real-Time Pipeline** | Data Engineering (High Traffic) | Python, GCS, CronJobs | [View Case Study ↗](./election-pipeline/) |
 | 🏛️ **GPPC Government Dashboard** | Backend & Data Modeling | FastAPI, PostgreSQL, BigQuery, Looker | [View Case Study ↗](./gppc-dashboard/) |
-| 🤖 **GenAI Document-Based Chatbot** | AI Infrastructure (RAG) | FastAPI, n8n, Supabase (Vector) | [View Case Study ↗](./genai-rag-chatbot/) |
+| 🤖 **GenAI Document-Based Chatbot** | AI Infrastructure (RAG) | n8n, Supabase (Vector) | [View Case Study ↗](./genai-rag-chatbot/) |
 
 ---
 
