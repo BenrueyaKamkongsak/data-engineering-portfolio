@@ -31,16 +31,23 @@ To enable sub-second client data delivery and decoupled CDN invalidation paths, 
 
 ```text
 my-bucket/
-├── assets/
-│   ├── images/
-│   │   ├── candidates/               # Pre-processed/resized candidate profiles
-│   │   └── political-parties/        # Retouched high-performance party logos
-│   └── static-data/                  # Static asset lookup configurations
+├── asset/
+│   ├── asset/
+│   │   └── candidate/                # Dynamic candidate profile assets
+│   └── parties/                      # Political party identity assets
 └── live/
-    ├── latest.json                   # Current global live score snapshot
-    ├── operational-control.json      # Internal operational configuration controls
-    └── historical-versions/
-        └── {timestamp or version}/   # Incremental structural snapshots for audit
+    ├── latest.json                   # Real-time national scoring snapshot (Always overwritten)
+    ├── warroom.json                  # Live operational war room telemetry (Always overwritten)
+    └── versions/
+        ├── {timestamp_v1}/           # Atomic immutable state snapshot at Time T1
+        │   ├── country_control.json  # National boundary data for version 1
+        │   ├── region_control.json   # Regional boundary data for version 1
+        │   ├── province_control.json # Province boundary data for version 1
+        │   └── zone_control.json     # Constituency/Zone boundary data for version 1
+        ├── {timestamp_v2}/           # Atomic immutable state snapshot at Time T2
+        │   └── ...                   # Incremental structural delta updates
+        └── {timestamp_v3}/
+            └── ...
 ```
 
 ### 3.3) Conceptual Data Flow Workflow
